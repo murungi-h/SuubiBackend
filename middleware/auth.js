@@ -1,6 +1,6 @@
 var admin = require("firebase-admin");
 var { StatusCodes } = require("http-status-codes");
-
+require('dotenv').config();
 var serviceAccount = require(process.env.SERVICE_ACCOUNT_KEY_PATH);
 
 admin.initializeApp({
