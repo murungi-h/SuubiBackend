@@ -2,7 +2,13 @@ var admin = require("firebase-admin");
 var { StatusCodes } = require("http-status-codes");
 require('dotenv').config();
 
-var serviceAccount = require(process.env.SERVICE_ACCOUNT_KEY_PATH);
+let serviceAccount;
+if (process.env.SERVICE_ACCOUNT_KEY_PATH) {
+  serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY_PATH);
+} else {
+  throw new Error('FIREBASE_CONFIG environment variable is not set');
+}
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
