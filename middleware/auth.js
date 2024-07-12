@@ -4,10 +4,16 @@ require('dotenv').config();
 
 let serviceAccount;
 if (process.env.SERVICE_ACCOUNT_KEY_PATH) {
-  serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY_PATH);
+  try {
+    serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY_PATH);
+  } catch (error) {
+    console.error('Error parsing FIREBASE_CONFIG:', error);
+    throw error;
+  }
 } else {
   throw new Error('FIREBASE_CONFIG environment variable is not set');
 }
+
 
 
 admin.initializeApp({
