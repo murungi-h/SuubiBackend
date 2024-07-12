@@ -1,4 +1,4 @@
-const Blog = require("../models/Blog");
+const Blog = require("../models/blog");
 const mongoose = require("mongoose");
 const { StatusCodes } = require("http-status-codes");
 const { isValidObjectId } = require("./helper");
